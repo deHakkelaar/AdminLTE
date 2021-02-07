@@ -652,6 +652,14 @@ function addStaticDHCPLease($mac, $ip, $hostname) {
 						$error .= "Router IP (".htmlspecialchars($router).") is invalid!<br>";
 					}
 
+                                        $dhcpdns = $_POST["dhcpdns"];
+
+                                        // Validate DHCP DNS IP's
+                                        // if (!validIP($dhcpdns))
+                                        // {
+                                        //        $error .= "DHCP DNS IP (".htmlspecialchars($dhcpdns).") is i$
+                                        // }
+
 					$domain = $_POST["domain"];
 
 					// Validate Domain name
@@ -690,7 +698,7 @@ function addStaticDHCPLease($mac, $ip, $hostname) {
 
 					if(!strlen($error))
 					{
-						pihole_execute("-a enabledhcp ".$from." ".$to." ".$router." ".$leasetime." ".$domain." ".$ipv6." ".$rapidcommit);
+						pihole_execute("-a enabledhcp ".$from." ".$to." ".$router." ".$dhcpdns." ".$leasetime." ".$domain." ".$ipv6." ".$rapidcommit);
 						$success .= "The DHCP server has been activated ".htmlspecialchars($type);
 					}
 				}
