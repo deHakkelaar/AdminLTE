@@ -655,10 +655,15 @@ function addStaticDHCPLease($mac, $ip, $hostname) {
                                         $dhcpdns = $_POST["dhcpdns"];
 
                                         // Validate DHCP DNS IP's
-                                        // if (!validIP($dhcpdns))
-                                        // {
-                                        //        $error .= "DHCP DNS IP (".htmlspecialchars($dhcpdns).") is i$
-                                        // }
+                                        $dhcpdnsips=explode(",",$dhcpdns);
+                                        foreach ($dhcpdnsips as $dhcpdnsip) {
+                                                if ($dhcpdnsip != "0.0.0.0") {
+                                                        if (!validIP($dhcpdnsip))
+                                                        {
+                                                                $error .= "DHCP DNS IP (".htmlspecialchars($dhcpdnsip).") is invalid!<br>";
+                                                        }
+                                                }
+                                        }
 
 					$domain = $_POST["domain"];
 
