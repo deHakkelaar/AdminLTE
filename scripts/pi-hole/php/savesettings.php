@@ -658,8 +658,7 @@ function addStaticDHCPLease($mac, $ip, $hostname) {
                                         $dhcpdnsips=explode(",",$dhcpdns);
                                         foreach ($dhcpdnsips as $dhcpdnsip) {
                                                 if ($dhcpdnsip != "0.0.0.0") {
-                                                        if (!validIP($dhcpdnsip))
-                                                        {
+                                                        if (!filter_var($dhcpdnsip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
                                                                 $error .= "DHCP DNS IP (".htmlspecialchars($dhcpdnsip).") is invalid!<br>";
                                                         }
                                                 }
