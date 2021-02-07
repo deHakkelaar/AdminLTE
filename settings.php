@@ -480,6 +480,11 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "adlists", "
                         } else {
                             $DHCProuter = "";
                         }
+                        if (isset($setupVars["DHCP_DNS"])) {
+                            $DHCPdns = $setupVars["DHCP_DNS"];
+                        } else {
+                            $DHCPdns = "0.0.0.0,0.0.0.0,0.0.0.0";
+                        }
 
                         // This setting has been added later, we have to check if it exists
                         if (isset($setupVars["DHCP_LEASETIME"])) {
@@ -573,6 +578,19 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "adlists", "
                                                         <div class="input-group-addon">Router</div>
                                                         <input type="text" class="form-control DHCPgroup" name="router" autocomplete="off" spellcheck="false" autocapitalize="none" autocorrect="off"
                                                                value="<?php echo $DHCProuter; ?>"
+                                                               <?php if (!$DHCP){ ?>disabled<?php } ?>>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label>DNS servers comma separated (0.0.0.0 is own host)</label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">DNS</div>
+                                                        <input type="text" class="form-control DHCPgroup" name="dhcpdns" autocomplete="off" spellcheck="false" autocapitalize="none" autocorrect="off"
+                                                               value="<?php echo $DHCPdns; ?>"
                                                                <?php if (!$DHCP){ ?>disabled<?php } ?>>
                                                     </div>
                                                 </div>
