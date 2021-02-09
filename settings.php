@@ -594,6 +594,7 @@ if (isset($_GET['tab']) && in_array($_GET['tab'], array("sysadmin", "adlists", "
                                                                <?php if (!$DHCP){ ?>disabled<?php } ?>>
                                                     </div>
                                                 </div>
+                                                <p>Hint: Make sure all DNS server IP's configured above resolve through Pi-hole or else blocked domains might still leak through depending DNS implementation on the clients.</p>
                                             </div>
                                         </div>
                                     </div>
